@@ -16,6 +16,7 @@
 
   <link rel="stylesheet" type="text/css" href="{{ asset('backend/plugins/toastr/toastr.min.css') }}">
 
+  <link rel="stylesheet" type="text/css" href="{{ asset('backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
   <livewire:styles />
 </head>
 <body class="hold-transition sidebar-mini">
@@ -60,6 +61,9 @@
 
 <script type="text/javascript" src="{{ asset('backend/plugins/toastr/toastr.min.js') }}"></script>
 
+<script type="text/javascript" src="https://unpkg.com/moment"></script>
+<script type="text/javascript" src="{{ asset('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+
 <script>
   $(document).ready(function() {
     toastr.options = {
@@ -90,6 +94,18 @@
   
 </script>
 
+<script>
+  $(document).ready(function() {
+    $('#appointmentDate').datetimepicker({
+      format: 'L',
+    });
+
+    $('#appointmentDate').on("change.datetimepicker", function (e) {
+      let date = $(this).data('appointmentdate');
+      eval(date).set('state.date', $('#appointmentDateInput').val());
+    });
+  });
+</script>
 <livewire:scripts />
 </body>
 </html>

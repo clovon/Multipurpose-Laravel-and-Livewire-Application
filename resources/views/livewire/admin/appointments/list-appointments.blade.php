@@ -22,7 +22,9 @@
       <div class="row">
         <div class="col-lg-12">
         	<div class="d-flex justify-content-end mb-2">
-        		<button wire:click.prevent="addNew" class="btn btn-primary"><i class="fa fa-plus-circle mr-1"></i> Add New Appointment</button>
+            <a href="{{ route('admin.appointments.create') }}">
+        		  <button class="btn btn-primary"><i class="fa fa-plus-circle mr-1"></i> Add New Appointment</button>
+            </a>
         	</div>
           <div class="card">
             <div class="card-body">

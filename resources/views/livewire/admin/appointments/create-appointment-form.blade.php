@@ -29,7 +29,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="client">Client:</label>
-                                            <select wire:model.defer="state.client_id" class="form-control" wire:model.defer="state.client_id">
+                                            <select wire:model.defer="state.client_id" class="form-control">
                                                 <option value="">Select Client</option>
                                                 @foreach($clients as $client)
                                                     <option value="{{ $client->id }}">{{ $client->name }}</option>

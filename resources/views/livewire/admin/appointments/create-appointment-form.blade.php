@@ -53,11 +53,11 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Appointment Time:</label>
-                                            <div class="input-group date" id="appointmentTime" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#appointmentTime">
+                                            <div wire:ignore class="input-group date" id="appointmentTime" data-target-input="nearest" data-appointmenttime="@this">
+                                                <input type="text" class="form-control datetimepicker-input" data-target="#appointmentTime" id="appointmentTimeInput">
                                                 <div class="input-group-append" data-target="#appointmentTime" data-toggle="datetimepicker">
                                                     <div class="input-group-text">
-                                                        <i class="far fa-calendar-alt"></i>
+                                                        <i class="far fa-clock"></i>
                                                     </div>
                                                 </div>
                                             </div>

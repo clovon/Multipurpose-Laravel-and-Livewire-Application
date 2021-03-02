@@ -19,7 +19,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form wire:submit.prevent="createAppointment">
+                    <form wire:submit.prevent="createAppointment" autocomplete="off">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Add New Appointment</h3>
@@ -66,16 +66,16 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="form-group">
+                                        <div wire:ignore class="form-group">
                                             <label for="note">Note:</label>
-                                            <textarea wire:model.defer="state.note" class="form-control"></textarea>
+                                            <textarea id="note" data-note="@this" wire:model.defer="state.note" class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer">
                                 <button type="button" class="btn btn-secondary"><i class="fa fa-times mr-1"></i> Cancel</button>
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i> Save</button>
+                                <button id="submit" type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i> Save</button>
                             </div>
                         </div>
                     </form>

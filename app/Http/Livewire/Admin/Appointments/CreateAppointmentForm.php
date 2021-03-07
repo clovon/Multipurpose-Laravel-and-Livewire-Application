@@ -13,7 +13,6 @@ class CreateAppointmentForm extends Component
 	public function createAppointment()
 	{
 		//validate
-		//
 		$this->state['status'] = 'open';
 		Appointment::create($this->state);
 

@@ -38,32 +38,33 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Date:</label>
-                                            <div wire:ignore class="input-group date" id="appointmentDate" data-target-input="nearest" data-appointmentdate="@this">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#appointmentDate" id="appointmentDateInput">
-                                                <div class="input-group-append" data-target="#appointmentDate" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                </div>
+                                            <label for="appointmentDate">Appointment Date</label>
+                                            <div class="input-group mb-3">
+                                              <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                              </div>
+                                              <x-datepicker wire:model.defer="state.date" id="appointmentDate" />
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Appointment Time:</label>
-                                            <div wire:ignore class="input-group date" id="appointmentTime" data-target-input="nearest" data-appointmenttime="@this">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#appointmentTime" id="appointmentTimeInput">
-                                                <div class="input-group-append" data-target="#appointmentTime" data-toggle="datetimepicker">
-                                                    <div class="input-group-text">
-                                                        <i class="far fa-clock"></i>
-                                                    </div>
-                                                </div>
+                                            <label for="appointmentTime">Appointment Time</label>
+                                            <div class="input-group mb-3">
+                                              <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                                              </div>
+                                              <x-timepicker wire:model.defer="state.time" id="appointmentTime" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div wire:ignore class="form-group">
@@ -83,4 +84,25 @@
             </div>
         </div>
     </div>
+
+    @push('js')
+    <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+                .create( document.querySelector( '#note' ) )
+                .then( editor => {
+                        // editor.model.document.on('change:data', () => {
+                        //   let note = $('#note').data('note');
+                        //   eval(note).set('state.note', editor.getData());
+                        // });
+                        document.querySelector('#submit').addEventListener('click', () => {
+                          let note = $('#note').data('note');
+                          eval(note).set('state.note', editor.getData());
+                        });
+                } )
+                .catch( error => {
+                        console.error( error );
+                } );
+    </script>
+    @endpush
 </div>

@@ -1,6 +1,6 @@
-@props(['id'])
+@props(['id', 'error'])
 
-<input {{ $attributes }} type="text" class="form-control datetimepicker-input" id="{{ $id }}" data-toggle="datetimepicker" data-target="#{{ $id }}"
+<input {{ $attributes }} type="text" class="form-control datetimepicker-input @error($error) is-invalid @enderror" id="{{ $id }}" data-toggle="datetimepicker" data-target="#{{ $id }}"
 onchange="this.dispatchEvent(new InputEvent('input'))"
 />
 

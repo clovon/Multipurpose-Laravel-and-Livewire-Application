@@ -40,12 +40,15 @@
       				    </tr>
       				  </thead>
       				  <tbody>
+                  @foreach ($appointments as $appointment)
       				    <tr>
-      				      <th scope="row">1</th>
-      				      <td>Client Name</td>
-      				      <td>Date</td>
-                    <td>Time</td>
-                    <td>stauts</td>
+      				      <th scope="row">{{ $loop->iteration }}</th>
+      				      <td>{{ $appointment->client->name }}</td>
+      				      <td>{{ $appointment->date->toFormattedDate() }}</td>
+                    <td>{{ $appointment->time->toFormattedTime() }}</td>
+                    <td>
+                      <span class="badge badge-{{ $appointment->status_badge }}">{{ $appointment->status }}</span>
+                    </td>
       				      <td>
       				      	<a href="">
       				      		<i class="fa fa-edit mr-2"></i>
@@ -56,6 +59,7 @@
       				      	</a>
       				      </td>
       				    </tr>
+                  @endforeach
       				  </tbody>
       				</table>
             </div>

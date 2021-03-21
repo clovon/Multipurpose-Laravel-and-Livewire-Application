@@ -7,10 +7,8 @@ onchange="this.dispatchEvent(new InputEvent('input'))"
 
 @push('js')
 <script type="text/javascript">
-    $(function () {
-        $('#{{ $id }}').datetimepicker({
-        	format: 'LT'
-        });
+    $('#{{ $id }}').datetimepicker({
+    	format: 'LT'
     });
 </script>
 @endpush

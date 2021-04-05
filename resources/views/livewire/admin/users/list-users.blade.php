@@ -21,8 +21,9 @@
 
       <div class="row">
         <div class="col-lg-12">
-        	<div class="d-flex justify-content-end mb-2">
+        	<div class="d-flex justify-content-between mb-2">
         		<button wire:click.prevent="addNew" class="btn btn-primary"><i class="fa fa-plus-circle mr-1"></i> Add New User</button>
+            <x-search-input wire:model="searchTerm" />
         	</div>
           <div class="card">
             <div class="card-body">
@@ -36,8 +37,8 @@
       				      <th scope="col">Options</th>
       				    </tr>
       				  </thead>
-      				  <tbody>
-                  @foreach($users as $user)
+      				  <tbody wire:loading.class="text-muted">
+                  @forelse($users as $user)
       				    <tr>
       				      <th scope="row">{{ $loop->iteration }}</th>
       				      <td>{{ $user->name }}</td>
@@ -53,7 +54,14 @@
       				      	</a>
       				      </td>
       				    </tr>
-                  @endforeach
+                  @empty
+                  <tr class="text-center">
+                    <td colspan="5">
+                      <img src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/v2/assets/empty.svg" alt="No results found">
+                      <p class="mt-2">No results found</p>
+                    </td>
+                  </tr>
+                  @endforelse
       				  </tbody>
       				</table>
             </div>

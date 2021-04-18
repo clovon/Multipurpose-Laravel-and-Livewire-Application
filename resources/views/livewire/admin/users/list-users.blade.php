@@ -41,7 +41,10 @@
                   @forelse($users as $user)
       				    <tr>
       				      <th scope="row">{{ $loop->iteration }}</th>
-      				      <td>{{ $user->name }}</td>
+      				      <td>
+                      <img src="{{ $user->avatar_url }}" style="width: 50px;" class="img img-circle mr-1" alt="">
+                      {{ $user->name }}
+                    </td>
       				      <td>{{ $user->email }}</td>
                     <td>{{ $user->created_at->toFormattedDate() }}</td>
       				      <td>
@@ -128,6 +131,21 @@
 		    <label for="passwordConfirmation">Confirm Password</label>
 		    <input type="password" wire:model.defer="state.password_confirmation" class="form-control" id="passwordConfirmation" placeholder="Confirm Password">
 		  </div>
+
+      <div class="form-group">
+        <label for="customFile">Profile Photo</label>
+
+        <div class="custom-file">
+          <input wire:model="photo" type="file" class="custom-file-input" id="customFile">
+          <label class="custom-file-label" for="customFile">
+            @if ($photo)
+              {{ $photo->getClientOriginalName() }}
+            @else
+              Choose Image
+            @endif
+          </label>
+        </div>
+      </div>
 		
       </div>
       <div class="modal-footer">

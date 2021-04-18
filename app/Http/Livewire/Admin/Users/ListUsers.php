@@ -5,9 +5,12 @@ namespace App\Http\Livewire\Admin\Users;
 use App\Http\Livewire\Admin\AdminComponent;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Livewire\WithFileUploads;
 
 class ListUsers extends AdminComponent
 {
+	use WithFileUploads;
+
 	public $state = [];
 
 	public $user;
@@ -17,6 +20,8 @@ class ListUsers extends AdminComponent
 	public $userIdBeingRemoved = null;
 
 	public $searchTerm = null;
+
+	public $photo;
 
 	public function addNew()
 	{
@@ -36,6 +41,10 @@ class ListUsers extends AdminComponent
 		])->validate();
 
 		$validatedData['password'] = bcrypt($validatedData['password']);
+
+		if ($this->photo) {
+			$validatedData['avatar'] = $this->photo->store('/', 'avatars');
+		}
 
 		User::create($validatedData);
 

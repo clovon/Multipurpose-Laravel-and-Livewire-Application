@@ -134,7 +134,11 @@
 
       <div class="form-group">
         <label for="customFile">Profile Photo</label>
-
+        @if ($photo)
+          <img src="{{ $photo->temporaryUrl() }}" class="img img-circle d-block mb-2" style="width: 50px;" alt="">
+        @else
+          <img src="{{ $state['avatar_url'] ?? '' }}" class="img img-circle d-block mb-2" style="width: 50px;" alt="">
+        @endif
         <div class="custom-file">
           <input wire:model="photo" type="file" class="custom-file-input" id="customFile">
           <label class="custom-file-label" for="customFile">

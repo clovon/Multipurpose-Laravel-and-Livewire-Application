@@ -28,6 +28,23 @@
               <a href="{{ route('admin.appointments.create') }}">
                 <button class="btn btn-primary"><i class="fa fa-plus-circle mr-1"></i> Add New Appointment</button>
               </a>
+
+              @if ($selectedRows)
+              <div class="btn-group ml-2">
+                <button type="button" class="btn btn-default">Bulk Actions</button>
+                <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu" role="menu">
+                  <a wire:click.prevent="deleteSelectedRows" class="dropdown-item" href="#">Delete Selected</a>
+                  <a wire:click.prevent="markAllAsScheduled" class="dropdown-item" href="#">Mark as Scheduled</a>
+                  <a wire:click.prevent="markAllAsClosed" class="dropdown-item" href="#">Mark as Closed</a>
+                </div>
+              </div>
+
+              <span class="ml-2">selected {{ count($selectedRows) }} {{ Str::plural('appointment', count($selectedRows)) }}</span>
+              @endif
+
             </div>
             <div class="btn-group">
               <button wire:click="filterAppointmentsByStatus" type="button" class="btn {{ is_null($status) ? 'btn-secondary' : 'btn-default' }}">
@@ -51,6 +68,12 @@
               <table class="table table-hover">
       				  <thead>
       				    <tr>
+                    <th>
+                      <div class="icheck-primary d-inline ml-2">
+                        <input wire:model="selectPageRows" type="checkbox" value="" name="todo2" id="todoCheck2">
+                        <label for="todoCheck2"></label>
+                      </div>
+                    </th>
       				      <th scope="col">#</th>
       				      <th scope="col">Client Name</th>
                     <th scope="col">Date</th>
@@ -62,6 +85,12 @@
       				  <tbody>
                   @foreach ($appointments as $appointment)
       				    <tr>
+                    <th>
+                      <div class="icheck-primary d-inline ml-2">
+                        <input wire:model="selectedRows" type="checkbox" value="{{ $appointment->id }}" name="todo2" id="{{ $appointment->id }}">
+                        <label for="{{ $appointment->id }}"></label>
+                      </div>
+                    </th>
       				      <th scope="row">{{ $loop->iteration }}</th>
       				      <td>{{ $appointment->client->name }}</td>
       				      <td>{{ $appointment->date }}</td>

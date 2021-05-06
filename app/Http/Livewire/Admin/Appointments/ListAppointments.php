@@ -15,6 +15,10 @@ class ListAppointments extends AdminComponent
 
 	protected $queryString = ['status'];
 
+	public $selectedRows = [];
+
+	public $selectPageRows = false;
+
 	public function confirmAppointmentRemoval($appointmentId)
 	{
 		$this->appointmentIdBeingRemoved = $appointmentId;
@@ -38,14 +42,57 @@ class ListAppointments extends AdminComponent
 		$this->status = $status;
 	}
 
-    public function render()
-    {
-    	$appointments = Appointment::with('client')
+	public function updatedSelectPageRows($value)
+	{
+		if ($value) {
+			$this->selectedRows = $this->appointments->pluck('id')->map(function ($id) {
+				return (string) $id;
+			});
+		} else {
+			$this->reset(['selectedRows', 'selectPageRows']);
+		}
+	}
+
+	public function getAppointmentsProperty()
+	{
+		return Appointment::with('client')
     		->when($this->status, function ($query, $status) {
     			return $query->where('status', $status);
     		})
     		->latest()
     		->paginate(3);
+	}
+
+	public function markAllAsScheduled()
+	{
+		Appointment::whereIn('id', $this->selectedRows)->update(['status' => 'SCHEDULED']);
+
+		$this->dispatchBrowserEvent('updated', ['message' => 'Appointments marked as scheduled']);
+
+		$this->reset(['selectPageRows', 'selectedRows']);
+	}
+
+	public function markAllAsClosed()
+	{
+		Appointment::whereIn('id', $this->selectedRows)->update(['status' => 'CLOSED']);
+
+		$this->dispatchBrowserEvent('updated', ['message' => 'Appointments marked as closed.']);
+
+		$this->reset(['selectPageRows', 'selectedRows']);
+	}
+
+	public function deleteSelectedRows()
+	{
+		Appointment::whereIn('id', $this->selectedRows)->delete();
+
+		$this->dispatchBrowserEvent('deleted', ['message' => 'All selected appointment got deleted.']);
+
+		$this->reset(['selectPageRows', 'selectedRows']);
+	}
+
+    public function render()
+    {
+    	$appointments = $this->appointments;
 
     	$appointmentsCount = Appointment::count();
     	$scheduledAppointmentsCount = Appointment::where('status', 'scheduled')->count();

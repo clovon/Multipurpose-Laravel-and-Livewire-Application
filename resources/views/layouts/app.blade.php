@@ -20,6 +20,9 @@
 
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{{ asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+
   <livewire:styles />
   @stack('styles')
 </head>
@@ -97,6 +100,10 @@
   })
 
   window.addEventListener('alert', event => {
+    toastr.success(event.detail.message, 'Success!');
+  })
+
+  window.addEventListener('updated', event => {
     toastr.success(event.detail.message, 'Success!');
   })
   

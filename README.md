@@ -2,7 +2,7 @@
 # Multipurpose Laravel and Livewire Application
 
 This is a part of YouTube tutorial series on building application using Laravel and Livewire.
-
+Here is the YouTube playlist link: https://www.youtube.com/watch?v=RGJJxkPZLpc&list=PLGg3vnFos8GMxYSWRBce3LH_SREan7my8&index=1
 ## Topics Covered
 
 * How to filter results using Laravel Livewire
@@ -34,5 +34,15 @@ This is a part of YouTube tutorial series on building application using Laravel 
 ## Authors
 
 - [@clovon](https://www.github.com/clovon)
+
+  
+## Feedback
+
+If you have any feedback, please reach out to me at channel.clovon@gmail.com
+
+  
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
 
   

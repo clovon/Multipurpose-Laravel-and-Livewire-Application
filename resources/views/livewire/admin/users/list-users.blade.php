@@ -39,7 +39,7 @@
       				    </tr>
       				  </thead>
       				  <tbody wire:loading.class="text-muted">
-                  @forelse($users as $user)
+                  @forelse ($users as $user)
       				    <tr>
       				      <th scope="row">{{ $loop->iteration }}</th>
       				      <td>

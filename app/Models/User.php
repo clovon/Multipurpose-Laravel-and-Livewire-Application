@@ -59,7 +59,7 @@ class User extends Authenticatable
         if ($this->avatar && Storage::disk('avatars')->exists($this->avatar)) {
             return Storage::disk('avatars')->url($this->avatar);
         }
-        
+
         return asset('noimage.png');
     }
 

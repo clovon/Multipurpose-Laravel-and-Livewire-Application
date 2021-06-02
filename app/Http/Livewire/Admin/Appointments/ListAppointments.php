@@ -38,7 +38,7 @@ class ListAppointments extends AdminComponent
 	public function filterAppointmentsByStatus($status = null)
 	{
 		$this->resetPage();
-		
+
 		$this->status = $status;
 	}
 

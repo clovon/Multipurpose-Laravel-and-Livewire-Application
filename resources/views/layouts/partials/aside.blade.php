@@ -59,7 +59,7 @@
 
         <li class="nav-item">
           <a href="{{ route('admin.profile.edit') }}" class="nav-link {{ request()->is('admin/profile') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-users"></i>
+            <i class="nav-icon fas fa-user"></i>
             <p>
               Profile
             </p>

@@ -32,7 +32,7 @@
                                             <select wire:model.defer="state.client_id" class="form-control @error('client_id') is-invalid @enderror">
                                                 <option value="">Select Client</option>
                                                 @foreach($clients as $client)
-                                                    <option value="{{ $client->id }}">{{ $client->name }}</option>
+                                                <option value="{{ $client->id }}">{{ $client->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('client_id')
@@ -42,6 +42,21 @@
                                             @enderror
                                         </div>
                                     </div>
+
+                                    <div class="col-md-6">
+                                        <div wire:ignore class="form-group">
+                                            <label>Select Team Members</label>
+                                            <select wire:model="state.members" class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
+                                                <option>Alabama</option>
+                                                <option>Alaska</option>
+                                                <option>California</option>
+                                                <option>Delaware</option>
+                                                <option>Tennessee</option>
+                                                <option>Texas</option>
+                                                <option>Washington</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="row">
@@ -49,15 +64,15 @@
                                         <div class="form-group">
                                             <label for="appointmentDate">Appointment Date</label>
                                             <div class="input-group mb-3">
-                                              <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                                              </div>
-                                              <x-datepicker wire:model.defer="state.date" id="appointmentDate" :error="'date'"/>
-                                              @error('date')
-                                              <div class="invalid-feedback">
-                                                  {{ $message }}
-                                              </div>
-                                              @enderror
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                                </div>
+                                                <x-datepicker wire:model.defer="state.date" id="appointmentDate" :error="'date'" />
+                                                @error('date')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -66,15 +81,15 @@
                                         <div class="form-group">
                                             <label for="appointmentTime">Appointment Time</label>
                                             <div class="input-group mb-3">
-                                              <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-clock"></i></span>
-                                              </div>
-                                              <x-timepicker wire:model.defer="state.time" id="appointmentTime" :error="'time'"/>
-                                              @error('time')
-                                              <div class="invalid-feedback">
-                                                  {{ $message }}
-                                              </div>
-                                              @enderror
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                                                </div>
+                                                <x-timepicker wire:model.defer="state.time" id="appointmentTime" :error="'time'" />
+                                                @error('time')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -99,9 +114,9 @@
                                                 <option value="CLOSED">Closed</option>
                                             </select>
                                             @error('status')
-                                              <div class="invalid-feedback">
-                                                  {{ $message }}
-                                              </div>
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
                                             @enderror
                                         </div>
                                     </div>
@@ -119,24 +134,32 @@
     </div>
 
     @push('js')
+    <script>
+        $(function() {
+            $('.select2').select2({
+                theme: 'bootstrap4',
+            }).on('change', function() {
+                @this.set('state.members', $(this).val());
+            });
+        })
+    </script>
     <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
     <script>
         ClassicEditor
-                .create( document.querySelector( '#note' ) )
-                .then( editor => {
-                        // editor.model.document.on('change:data', () => {
-                        //   let note = $('#note').data('note');
-                        //   eval(note).set('state.note', editor.getData());
-                        // });
-                        document.querySelector('#submit').addEventListener('click', () => {
-                          let note = $('#note').data('note');
-                          eval(note).set('state.note', editor.getData());
-                        });
-                } )
-                .catch( error => {
-                        console.error( error );
-                } );
+            .create(document.querySelector('#note'))
+            .then(editor => {
+                // editor.model.document.on('change:data', () => {
+                //   let note = $('#note').data('note');
+                //   eval(note).set('state.note', editor.getData());
+                // });
+                document.querySelector('#submit').addEventListener('click', () => {
+                    let note = $('#note').data('note');
+                    eval(note).set('state.note', editor.getData());
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
     </script>
     @endpush
 </div>
-

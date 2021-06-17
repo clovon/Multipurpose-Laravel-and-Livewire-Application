@@ -23,6 +23,10 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="{{ asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
 
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{ asset('backend/plugins/select2/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+
   <livewire:styles />
   @stack('styles')
 </head>
@@ -71,6 +75,9 @@
 <script type="text/javascript" src="https://unpkg.com/moment"></script>
 <script type="text/javascript" src="{{ asset('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 
+<!-- Select2 -->
+<script src="{{ asset('backend/plugins/select2/js/select2.full.min.js') }}"></script>
+
 <script>
   $(document).ready(function() {
     toastr.options = {
@@ -106,7 +113,7 @@
   window.addEventListener('updated', event => {
     toastr.success(event.detail.message, 'Success!');
   })
-  
+
 </script>
 
 @stack('js')

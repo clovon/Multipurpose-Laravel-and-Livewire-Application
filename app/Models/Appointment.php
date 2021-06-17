@@ -15,6 +15,7 @@ class Appointment extends Model
     protected $casts = [
     	'date' => 'datetime',
     	'time' => 'datetime',
+        'members' => 'array',
     ];
 
     public function client()

@@ -26,16 +26,14 @@
                     <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
                             <div class="text-center" x-data="{ imagePreview: '{{ auth()->user()->avatar_url }}' }">
-                                <input wire:model="image" type="file" class="d-none" x-ref="image"
-                                    x-on:change="
+                                <input wire:model="image" type="file" class="d-none" x-ref="image" x-on:change="
                                         const reader = new FileReader();
                                         reader.onload = (event) => {
                                             imagePreview = event.target.result;
                                             document.getElementById('profileImage').src = `${imagePreview}`;
                                         };
                                         reader.readAsDataURL($refs.image.files[0]);
-                                    "
-                                />
+                                    " />
                                 <img x-on:click="$refs.image.click()" class="profile-user-img img-circle" x-bind:src="imagePreview ? imagePreview : '/backend/dist/img/user4-128x128.jpg'" alt="User profile picture">
                             </div>
 
@@ -71,6 +69,20 @@
                                             <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                             <div class="col-sm-10">
                                                 <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                            <div class="col-sm-10">
+                                                <x-inputs.select2 wire:model="state.members" id="members" placeholder="Select Members">
+                                                    <option>One</option>
+                                                    <option>Alaska</option>
+                                                    <option>California</option>
+                                                    <option>Delaware</option>
+                                                    <option>Tennessee</option>
+                                                    <option>Texas</option>
+                                                    <option>Washington</option>
+                                                </x-inputs.select2>
                                             </div>
                                         </div>
                                         <div class="form-group row">

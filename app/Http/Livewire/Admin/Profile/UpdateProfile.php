@@ -12,6 +12,8 @@ class UpdateProfile extends Component
 
     public $image;
 
+    public $state = [];
+
     public function updatedImage()
     {
         $previousPath = auth()->user()->avatar;

@@ -43,18 +43,33 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div wire:ignore class="form-group">
+                                        <div class="form-group">
                                             <label>Select Team Members</label>
-                                            <select class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
-                                                <option>Alabama</option>
+                                            <x-inputs.select2 wire:model="state.members" id="members" placeholder="Select Members">
+                                                <option>One</option>
                                                 <option>Alaska</option>
                                                 <option>California</option>
                                                 <option>Delaware</option>
                                                 <option>Tennessee</option>
                                                 <option>Texas</option>
                                                 <option>Washington</option>
-                                            </select>
+                                            </x-inputs.select2>
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Select Team Members</label>
+                                        <x-inputs.select2 wire:model="state.others" id="others">
+                                            <option>One</option>
+                                            <option>Alaska</option>
+                                            <option>California</option>
+                                            <option>Delaware</option>
+                                            <option>Tennessee</option>
+                                            <option>Texas</option>
+                                            <option>Washington</option>
+                                        </x-inputs.select2>
                                     </div>
                                 </div>
 
@@ -133,16 +148,6 @@
     </div>
 
     @push('js')
-    <script>
-        $(function() {
-            $('.select2').select2({
-                theme: 'bootstrap4',
-            }).on('change', function() {
-                @this.set('state.members', $(this).val());
-            });
-        })
-    </script>
-
     <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
     <script>
         ClassicEditor

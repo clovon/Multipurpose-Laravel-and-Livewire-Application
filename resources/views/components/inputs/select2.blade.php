@@ -26,9 +26,7 @@
     $(function() {
         $('#{{ $id }}').select2({
             theme: 'bootstrap4',
-        }).on('change', function() {
-            @this.set('{{ $attributes->whereStartsWith('wire:model')->first() }}', $(this).val());
-        });
+        })
     })
 </script>
 @endpush

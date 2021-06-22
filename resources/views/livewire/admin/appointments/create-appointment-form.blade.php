@@ -65,18 +65,30 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Select Team Members</label>
-                                        <x-inputs.select2 wire:model="state.others" id="others">
-                                            <option>One</option>
-                                            <option>Alaska</option>
-                                            <option>California</option>
-                                            <option>Delaware</option>
-                                            <option>Tennessee</option>
-                                            <option>Texas</option>
-                                            <option>Washington</option>
-                                        </x-inputs.select2>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- Color Picker -->
+                                        <!-- <div class="form-group" wire:ignore.self>
+                                            <label>Color picker:</label>
+                                            <input wire:model.defer="state.color" type="text" class="form-control @error('color') is-invalid @enderror" id="colorPicker">
+                                            @error('color')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div> -->
+                                        <div class="form-group">
+                                            <label>Color picker with addon:</label>
+
+                                            <div class="input-group" id="colorPicker">
+                                                <input type="text" name="color" class="form-control">
+
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="fas fa-square"></i></span>
+                                                </div>
+                                            </div>
+                                            <!-- /.input group -->
+                                        </div>
                                     </div>
                                 </div>
 
@@ -155,12 +167,18 @@
     </div>
 
     @push('js')
+    <script>
+        $('#colorPicker').colorpicker().on('change', function(event) {
+            $('#colorPicker .fa-square').css('color', event.color.toString());
+        });
+    </script>
     <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
     <script>
         ClassicEditor.create(document.querySelector('#note'));
-        $('form').submit(function () {
+        $('form').submit(function() {
             @this.set('state.members', $('#members').val());
             @this.set('state.note', $('#note').val());
+            @this.set('state.color', $('[name=color]').val());
         })
     </script>
     @endpush

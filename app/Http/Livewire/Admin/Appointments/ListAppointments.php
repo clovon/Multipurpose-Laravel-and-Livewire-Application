@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire\Admin\Appointments;
 
-use App\Http\Livewire\Admin\AdminComponent;
+use App\Exports\AppointmentsExport;
 use App\Models\Appointment;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Livewire\Admin\AdminComponent;
 
 class ListAppointments extends AdminComponent
 {
@@ -60,7 +62,7 @@ class ListAppointments extends AdminComponent
     			return $query->where('status', $status);
     		})
     		->latest()
-    		->paginate(3);
+    		->paginate(10);
 	}
 
 	public function markAllAsScheduled()
@@ -89,6 +91,11 @@ class ListAppointments extends AdminComponent
 
 		$this->reset(['selectPageRows', 'selectedRows']);
 	}
+
+    public function export()
+    {
+        return (new AppointmentsExport($this->selectedRows))->download('appointments.xls');
+    }
 
     public function render()
     {

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>AdminLTE 3 | Starter</title>
+    <title>{{ setting('site_title') }} | {{ setting('site_name') }}</title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('backend/plugins/fontawesome-free/css/all.min.css') }}">
@@ -37,7 +37,7 @@
     <livewire:styles />
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini {{ setting('sidebar_collapse') ? 'sidebar-collapse' : '' }}">
     <div class="wrapper">
 
         <!-- Navbar -->

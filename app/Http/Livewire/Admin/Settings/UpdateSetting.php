@@ -12,7 +12,11 @@ class UpdateSetting extends Component
 
     public function mount()
     {
-        $this->state = Setting::first()->toArray();
+        $setting = Setting::first();
+
+        if ($setting) {
+            $setting->toArray();
+        }
     }
 
     public function updateSetting()

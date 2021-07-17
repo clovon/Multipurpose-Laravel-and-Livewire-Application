@@ -1,13 +1,16 @@
 <?php
 
 use App\Models\Setting;
+use App\NullSetting;
 use Illuminate\Support\Facades\Cache;
 
 function setting($key)
 {
     $setting = Cache::rememberForever('setting', function () {
-        return Setting::first();
+        return Setting::first() ?? NullSetting::make();
     });
 
-    return $setting->{$key};
+    if ($setting) {
+        return $setting->{$key};
+    }
 }

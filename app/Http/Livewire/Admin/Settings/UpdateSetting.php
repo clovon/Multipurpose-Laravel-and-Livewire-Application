@@ -15,7 +15,7 @@ class UpdateSetting extends Component
         $setting = Setting::first();
 
         if ($setting) {
-            $setting->toArray();
+            $this->state = $setting->toArray();
         }
     }
 

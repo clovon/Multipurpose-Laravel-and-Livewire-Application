@@ -50,7 +50,7 @@
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" href="#settings" data-toggle="tab"><i class="fa fa-cog mr-1"></i> Settings</a></li>
+                                <li class="nav-item"><a class="nav-link active" href="#settings" data-toggle="tab"><i class="fa fa-user mr-1"></i> Edit Profile</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#changePassword" data-toggle="tab"><i class="fa fa-key mr-1"></i> Change
                                         Password</a></li>
                             </ul>

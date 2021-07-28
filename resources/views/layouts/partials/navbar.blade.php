@@ -8,19 +8,20 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{ auth()->user()->name }}
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">Profile</a>
-          <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">Change Password</a>
-          <a class="dropdown-item" href="{{ route('admin.settings') }}">Settings</a>
-          <div class="dropdown-divider"></div>
-          <form method="POST" action="{{ route('logout') }}">
-          <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
-          </form>
-        </div>
-      </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="{{ auth()->user()->avatar_url }}" id="profileImage" class="img-circle elevation-1" alt="User Image" style="height: 30px; width: 30px;">
+                <span class="ml-1">{{ auth()->user()->name }}</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">Profile</a>
+                <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">Change Password</a>
+                <a class="dropdown-item" href="{{ route('admin.settings') }}">Settings</a>
+                <div class="dropdown-divider"></div>
+                <form method="POST" action="{{ route('logout') }}">
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
+                </form>
+            </div>
+        </li>
     </ul>
 </nav>

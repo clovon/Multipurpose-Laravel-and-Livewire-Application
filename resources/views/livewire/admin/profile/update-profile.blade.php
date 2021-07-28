@@ -50,8 +50,8 @@
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" href="#settings" data-toggle="tab">Settings</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#changePassword" data-toggle="tab">Change
+                                <li class="nav-item"><a class="nav-link active" href="#settings" data-toggle="tab"><i class="fa fa-cog mr-1"></i> Settings</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#changePassword" data-toggle="tab"><i class="fa fa-key mr-1"></i> Change
                                         Password</a></li>
                             </ul>
                         </div><!-- /.card-header -->
@@ -72,22 +72,8 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                                            <div class="col-sm-10">
-                                                <x-inputs.select2 wire:model="state.members" id="members" placeholder="Select Members">
-                                                    <option>One</option>
-                                                    <option>Alaska</option>
-                                                    <option>California</option>
-                                                    <option>Delaware</option>
-                                                    <option>Tennessee</option>
-                                                    <option>Texas</option>
-                                                    <option>Washington</option>
-                                                </x-inputs.select2>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
                                             <div class="offset-sm-2 col-sm-10">
-                                                <button type="submit" class="btn btn-danger">Submit</button>
+                                                <button type="submit" class="btn btn-success"><i class="fa fa-save mr-1"></i> Save Changes</button>
                                             </div>
                                         </div>
                                     </form>
@@ -118,7 +104,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="offset-sm-3 col-sm-9">
-                                                <button type="submit" class="btn btn-danger">Submit</button>
+                                                <button type="submit" class="btn btn-success"><i class="fa fa-save mr-1"></i> Save Changes</button>
                                             </div>
                                         </div>
                                     </form>

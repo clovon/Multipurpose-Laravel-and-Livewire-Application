@@ -37,7 +37,7 @@
                                 <img x-on:click="$refs.image.click()" class="profile-user-img img-circle" x-bind:src="imagePreview ? imagePreview : '/backend/dist/img/user4-128x128.jpg'" alt="User profile picture">
                             </div>
 
-                            <h3 class="profile-username text-center">John Doe</h3>
+                            <h3 class="profile-username text-center">{{ auth()->user()->name }}</h3>
 
                             <p class="text-muted text-center">Admin</p>
                         </div>
@@ -58,17 +58,27 @@
                         <div class="card-body">
                             <div class="tab-content">
                                 <div class="tab-pane active" id="settings">
-                                    <form class="form-horizontal">
+                                    <form wire:submit.prevent="updateProfile" class="form-horizontal">
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                             <div class="col-sm-10">
-                                                <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                                <input wire:model.defer="state.name" type="text" class="form-control @error('name') is-invalid @enderror" id="inputName" placeholder="Name">
+                                                @error('name')
+                                                <div class="invalid-feedback">
+                                                    {{ $message}}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                             <div class="col-sm-10">
-                                                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                                <input wire:model.defer="state.email" type="email" class="form-control @error('email') is-invalid @enderror" id="inputEmail" placeholder="Email">
+                                                @error('email')
+                                                <div class="invalid-feedback">
+                                                    {{ $message}}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -132,4 +142,14 @@
         cursor: pointer;
     }
 </style>
+@endpush
+
+@push('js')
+<script>
+    $(document).ready(function () {
+        Livewire.on('nameChanged', (changedName) => {
+            $('[x-ref="username"]').text(changedName);
+        })
+    });
+</script>
 @endpush

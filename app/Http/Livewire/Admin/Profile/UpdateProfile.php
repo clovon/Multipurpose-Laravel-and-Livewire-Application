@@ -3,8 +3,10 @@
 namespace App\Http\Livewire\Admin\Profile;
 
 use Livewire\Component;
+use Illuminate\Support\Arr;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
 class UpdateProfile extends Component
@@ -43,6 +45,18 @@ class UpdateProfile extends Component
         $this->emit('nameChanged', auth()->user()->name);
 
         $this->dispatchBrowserEvent('updated', ['message' => 'Profile updated successfully!']);
+    }
+
+    public function changePassword(UpdatesUserPasswords $updater)
+    {
+        $updater->update(
+            auth()->user(),
+            $attributes = Arr::only($this->state, ['current_password', 'password', 'password_confirmation'])
+        );
+
+        collect($attributes)->map(fn ($value, $key) => $this->state[$key] = '');
+
+        $this->dispatchBrowserEvent('updated', ['message' => 'Password changed successfully!']);
     }
 
     public function render()

@@ -14,8 +14,8 @@
                 <span class="ml-1" x-ref="username">{{ auth()->user()->name }}</span>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">Profile</a>
-                <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">Change Password</a>
+                <a class="dropdown-item" href="{{ route('admin.profile.edit') }}" x-ref="profileLink">Profile</a>
+                <a class="dropdown-item" href="{{ route('admin.profile.edit') }}" x-ref="changePasswordLink">Change Password</a>
                 <a class="dropdown-item" href="{{ route('admin.settings') }}">Settings</a>
                 <div class="dropdown-divider"></div>
                 <form method="POST" action="{{ route('logout') }}">

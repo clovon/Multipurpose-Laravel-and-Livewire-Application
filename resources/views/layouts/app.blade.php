@@ -19,7 +19,9 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
 
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    @stack('alpine-plugins')
+    <!-- Alpine Core -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
@@ -119,6 +121,15 @@
         window.addEventListener('updated', event => {
             toastr.success(event.detail.message, 'Success!');
         })
+    </script>
+
+    <script>
+        $('[x-ref="profileLink"]').on('click', function () {
+            localStorage.setItem('_x_currentTab', '"profile"');
+        });
+        $('[x-ref="changePasswordLink"]').on('click', function () {
+            localStorage.setItem('_x_currentTab', '"changePassword"');
+        });
     </script>
 
     @stack('js')

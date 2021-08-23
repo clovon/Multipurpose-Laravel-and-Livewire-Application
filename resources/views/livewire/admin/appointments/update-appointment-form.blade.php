@@ -46,15 +46,15 @@
                                     <div class="col-md-6">
                                         <div wire:ignore class="form-group">
                                             <label>Select Team Members</label>
-                                            <select wire:model="state.members" class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
-                                                <option>Alabama</option>
+                                            <x-inputs.select2 wire:model="state.members" id="members" placeholder="Select Members">
+                                                <option>One</option>
                                                 <option>Alaska</option>
                                                 <option>California</option>
                                                 <option>Delaware</option>
                                                 <option>Tennessee</option>
                                                 <option>Texas</option>
                                                 <option>Washington</option>
-                                            </select>
+                                            </x-inputs.select2>
                                         </div>
                                     </div>
                                 </div>
@@ -135,31 +135,18 @@
 
     @push('js')
     <script>
-        $(function() {
-            $('.select2').select2({
-                theme: 'bootstrap4',
-            }).on('change', function() {
-                @this.set('state.members', $(this).val());
-            });
-        })
+        $('#colorPicker').colorpicker().on('change', function(event) {
+            $('#colorPicker .fa-square').css('color', event.color.toString());
+        });
     </script>
     <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
     <script>
-        ClassicEditor
-            .create(document.querySelector('#note'))
-            .then(editor => {
-                // editor.model.document.on('change:data', () => {
-                //   let note = $('#note').data('note');
-                //   eval(note).set('state.note', editor.getData());
-                // });
-                document.querySelector('#submit').addEventListener('click', () => {
-                    let note = $('#note').data('note');
-                    eval(note).set('state.note', editor.getData());
-                });
-            })
-            .catch(error => {
-                console.error(error);
-            });
+        ClassicEditor.create(document.querySelector('#note'));
+        $('form').submit(function() {
+            @this.set('state.members', $('#members').val());
+            @this.set('state.note', $('#note').val());
+            @this.set('state.color', $('[name=color]').val());
+        })
     </script>
     @endpush
 </div>

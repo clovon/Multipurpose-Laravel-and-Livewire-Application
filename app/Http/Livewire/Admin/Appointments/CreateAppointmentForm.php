@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Admin\Appointments;
 
-use App\Models\Appointment;
 use App\Models\Client;
-use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
+use App\Models\Appointment;
+use Illuminate\Support\Facades\Validator;
 
 class CreateAppointmentForm extends Component
 {

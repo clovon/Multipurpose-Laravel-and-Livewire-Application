@@ -11,6 +11,7 @@ class CreateAppointmentForm extends Component
 {
 	public $state = [
 		'status' => 'SCHEDULED',
+        'order_position' => 0,
 	];
 
 	public function createAppointment()
@@ -33,6 +34,8 @@ class CreateAppointmentForm extends Component
 		Appointment::create($this->state);
 
 		$this->dispatchBrowserEvent('alert', ['message' => 'Appointment created successfully!']);
+
+        return redirect()->route('admin.appointments');
 	}
 
     public function render()

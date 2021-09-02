@@ -69,72 +69,12 @@
         @include('layouts.partials.footer')
     </div>
     <!-- ./wrapper -->
-
-    <!-- REQUIRED SCRIPTS -->
-
-    <!-- jQuery -->
-    <script src="{{ asset('backend/plugins/jquery/jquery.min.js') }}"></script>
-    <!-- Bootstrap 4 -->
-    <script src="{{ asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('backend/dist/js/adminlte.min.js') }}"></script>
-
-    <script type="text/javascript" src="{{ asset('backend/plugins/toastr/toastr.min.js') }}"></script>
-
-    <script type="text/javascript" src="https://unpkg.com/moment"></script>
-    <script type="text/javascript" src="{{ asset('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-
-    <!-- bootstrap color picker -->
-    <script src="{{ asset('backend/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            toastr.options = {
-                "positionClass": "toast-bottom-right",
-                "progressBar": true,
-            }
-
-            window.addEventListener('hide-form', event => {
-                $('#form').modal('hide');
-                toastr.success(event.detail.message, 'Success!');
-            })
-        });
-    </script>
-
-    <script>
-        window.addEventListener('show-form', event => {
-            $('#form').modal('show');
-        })
-
-        window.addEventListener('show-delete-modal', event => {
-            $('#confirmationModal').modal('show');
-        })
-
-        window.addEventListener('hide-delete-modal', event => {
-            $('#confirmationModal').modal('hide');
-            toastr.success(event.detail.message, 'Success!');
-        })
-
-        window.addEventListener('alert', event => {
-            toastr.success(event.detail.message, 'Success!');
-        })
-
-        window.addEventListener('updated', event => {
-            toastr.success(event.detail.message, 'Success!');
-        })
-    </script>
-
-    <script>
-        $('[x-ref="profileLink"]').on('click', function () {
-            localStorage.setItem('_x_currentTab', '"profile"');
-        });
-        $('[x-ref="changePasswordLink"]').on('click', function () {
-            localStorage.setItem('_x_currentTab', '"changePassword"');
-        });
-    </script>
-
+    <script src="/js/app.js"></script>
+    <script src="/js/backend.js"></script>
     @stack('js')
+    @stack('before-livewire-scripts')
     <livewire:scripts />
-    <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
+    @stack('after-livewire-scripts')
 </body>
 
 </html>

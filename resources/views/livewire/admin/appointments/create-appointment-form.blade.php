@@ -165,21 +165,6 @@
             </div>
         </div>
     </div>
-
-    @push('js')
-    <script>
-        $('#colorPicker').colorpicker().on('change', function(event) {
-            $('#colorPicker .fa-square').css('color', event.color.toString());
-        });
-    </script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
-    <script>
-        ClassicEditor.create(document.querySelector('#note'));
-        $('form').submit(function() {
-            @this.set('state.members', $('#members').val());
-            @this.set('state.note', $('#note').val());
-            @this.set('state.color', $('[name=color]').val());
-        })
-    </script>
-    @endpush
 </div>
+
+@include('livewire/admin/appointments/appointment-js')

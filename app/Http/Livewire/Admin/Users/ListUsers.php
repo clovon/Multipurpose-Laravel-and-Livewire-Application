@@ -25,6 +25,10 @@ class ListUsers extends AdminComponent
 
 	public $photo;
 
+    public $sortColumnName = 'created_at';
+
+    public $sortDirection = 'desc';
+
 	public function changeRole(User $user, $role)
 	{
 		Validator::make(['role' => $role], [
@@ -120,12 +124,29 @@ class ListUsers extends AdminComponent
 		$this->dispatchBrowserEvent('hide-delete-modal', ['message' => 'User deleted successfully!']);
 	}
 
+    public function sortBy($columnName)
+    {
+        if ($this->sortColumnName === $columnName) {
+            $this->sortDirection = $this->swapSortDirection();
+        } else {
+            $this->sortDirection = 'asc';
+        }
+
+        $this->sortColumnName = $columnName;
+    }
+
+    public function swapSortDirection()
+    {
+        return $this->sortDirection === 'asc' ? 'desc' : 'asc';
+    }
+
     public function render()
     {
     	$users = User::query()
     		->where('name', 'like', '%'.$this->searchTerm.'%')
     		->orWhere('email', 'like', '%'.$this->searchTerm.'%')
-    		->latest()->paginate(5);
+            ->orderBy($this->sortColumnName, $this->sortDirection)
+            ->paginate(5);
 
         return view('livewire.admin.users.list-users', [
         	'users' => $users,

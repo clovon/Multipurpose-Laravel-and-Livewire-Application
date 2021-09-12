@@ -23,6 +23,8 @@ class ListUsers extends AdminComponent
 
 	public $searchTerm = null;
 
+    protected $queryString = ['searchTerm' => ['except' => '']];
+
 	public $photo;
 
     public $sortColumnName = 'created_at';
@@ -138,6 +140,11 @@ class ListUsers extends AdminComponent
     public function swapSortDirection()
     {
         return $this->sortDirection === 'asc' ? 'desc' : 'asc';
+    }
+
+    public function updatedSearchTerm()
+    {
+        $this->resetPage();
     }
 
     public function render()

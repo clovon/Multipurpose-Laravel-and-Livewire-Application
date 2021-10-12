@@ -25,6 +25,38 @@ class CreateAppointmentFormTest extends TestCase
     }
 
     /** @test */
+    public function it_performs_a_validation()
+    {
+        Livewire::test(CreateAppointmentForm::class)
+            ->set('state', [
+                'client_id' => '',
+                'members' => '',
+                'color' => '',
+                'date' => '',
+                'time' => '',
+                'status' => '',
+            ])
+            ->call('createAppointment')
+            ->assertHasErrors([
+                'client_id' => 'required',
+                'members' => 'required',
+                'color' => 'required',
+				'date' => 'required',
+				'time' => 'required',
+				'status' => 'required',
+            ]);
+    }
+
+    /** @test */
+    public function it_requires_a_valid_status_value()
+    {
+        Livewire::test(CreateAppointmentForm::class)
+            ->set('state', ['status' => 'INVALID'])
+            ->call('createAppointment')
+            ->assertHasErrors(['status']);
+    }
+
+    /** @test */
     public function it_can_create_appointment()
     {
         $this->actingAs(User::factory()->create(['role' => 'admin']));

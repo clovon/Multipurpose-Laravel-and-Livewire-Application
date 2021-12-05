@@ -49,6 +49,15 @@
         </li>
 
         <li class="nav-item">
+          <a href="{{ route('admin.messages') }}" class="nav-link {{ request()->is('admin/messages') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Messages
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item">
           <a href="{{ route('admin.settings') }}" class="nav-link {{ request()->is('admin/settings') ? 'active' : '' }}">
             <i class="nav-icon fas fa-cog"></i>
             <p>

@@ -50,7 +50,7 @@
 
         <li class="nav-item">
           <a href="{{ route('admin.messages') }}" class="nav-link {{ request()->is('admin/messages') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-users"></i>
+            <i class="nav-icon fas fa-comments"></i>
             <p>
               Messages
             </p>

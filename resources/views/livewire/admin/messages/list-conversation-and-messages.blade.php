@@ -8,8 +8,8 @@
                 <div class="card-body">
                     <ul class="contacts-list">
                         @foreach ($conversations as $conversation)
-                        <li class="">
-                            <a href="#">
+                        <li class="{{ $conversation->id === $selectedConversation->id ? 'bg-warning' : '' }}">
+                            <a href="#" wire:click.prevent="viewMessage( {{ $conversation->id }})">
                                 <img class="contacts-list-img" src="{{ $conversation->receiver->avatar_url }}" alt="User Avatar">
                                 <div class="contacts-list-info">
                                     <span class="contacts-list-name text-dark">
@@ -32,7 +32,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Chat with
                         <span>
-                            Rossie Hoeger
+                            {{ $selectedConversation->receiver->name }}
                         </span>
                     </h3>
                 </div>
@@ -41,19 +41,21 @@
                     <!-- Conversations are loaded here -->
                     <div class="direct-chat-messages" id="conversation">
                         <!-- Message. Default to the left -->
-                        <div class="direct-chat-msg right">
+                        @foreach ($selectedConversation->messages as $message)
+                        <div class="direct-chat-msg {{ $message->user_id === auth()->id() ? 'right' : '' }}">
                             <div class="clearfix direct-chat-infos">
-                                <span class="float-left direct-chat-name">You</span>
-                                <span class="float-right direct-chat-timestamp">16 Nov 11:52 pm</span>
+                                <span class="float-left direct-chat-name">{{ $message->user->name }}</span>
+                                <span class="float-right direct-chat-timestamp">{{ $message->created_at->format('d M h:i a') }}</span>
                             </div>
                             <!-- /.direct-chat-infos -->
-                            <img class="direct-chat-img" src="http://localhost:8000/storage/avatars/24HCF7MiZIgETjLJ1PUddPPseAWDSJEW9jVRRiy1.png" alt="message user image">
+                            <img class="direct-chat-img" src="{{ $message->user->avatar_url }}" alt="message user image">
                             <!-- /.direct-chat-img -->
                             <div class="direct-chat-text">
-                                Hi
+                                {{ $message->body }}
                             </div>
                             <!-- /.direct-chat-text -->
                         </div>
+                        @endforeach
                         <!-- /.direct-chat-msg -->
                     </div>
                     <!--/.direct-chat-messages-->

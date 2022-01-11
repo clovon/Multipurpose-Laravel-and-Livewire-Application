@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" wire:poll>
     <div class="pt-2 row">
         <div class="col-md-4">
             <div class="card">
@@ -62,11 +62,11 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <form action="#">
+                    <form wire:submit.prevent="sendMessage" action="#">
                         <div class="input-group">
-                            <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                            <input wire:model.defer="body" type="text" name="message" placeholder="Type Message ..." class="form-control">
                             <span class="input-group-append">
-                                <button type="button" class="btn btn-primary">Send</button>
+                                <button type="submit" class="btn btn-primary">Send</button>
                             </span>
                         </div>
                     </form>

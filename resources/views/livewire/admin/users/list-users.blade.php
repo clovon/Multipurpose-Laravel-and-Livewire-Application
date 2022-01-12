@@ -59,7 +59,7 @@
                                             {{ $user->name }}
                                         </td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->created_at->toFormattedDate() }}</td>
+                                        <td>{{ $user->created_at?->toFormattedDate() ?? 'N/A' }}</td>
                                         <td>
                                             <select class="form-control" wire:change="changeRole({{ $user }}, $event.target.value)">
                                                 <option value="admin" {{ ($user->role === 'admin') ? 'selected' : '' }}>ADMIN</option>

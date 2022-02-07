@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Users;
 
 use App\Http\Livewire\Admin\AdminComponent;
+use App\Models\Conversation;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -145,6 +146,16 @@ class ListUsers extends AdminComponent
     public function updatedSearchTerm()
     {
         $this->resetPage();
+    }
+
+    public function startConversation($userId)
+    {
+        $conversation = Conversation::firstOrCreate([
+            'sender_id' => auth()->id(),
+            'receiver_id' => $userId,
+        ]);
+
+        return redirect('/admin/messages')->with('selectedConversation', $conversation);
     }
 
     public function render()

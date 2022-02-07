@@ -1,3 +1,4 @@
+@if ($conversations->isNotEmpty())
 <div class="container" wire:poll>
     <div class="pt-2 row">
         <div class="col-md-4">
@@ -84,3 +85,13 @@
         </div>
     </div>
 </div>
+@else
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="text-center"> <img src="/images/open-message.png" width="130" height="130" class="img-fluid my-4">
+            <h3><strong>You do not have any messages yet.</strong></h3>
+            <h4>Click the button below to select the users to chat with</h4> <a href="/admin/users" class="btn btn-primary m-3">Go to Users</a>
+        </div>
+    </div>
+</div>
+@endif

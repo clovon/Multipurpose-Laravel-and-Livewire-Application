@@ -56,7 +56,8 @@
                                         <th scope="row">{{ $users->firstItem() + $index }}</th>
                                         <td>
                                             <img src="{{ $user->avatar_url }}" style="width: 50px;" class="img img-circle mr-1" alt="">
-                                            {{ $user->name }}
+                                            <span class="mr-2">{{ $user->name }}</span>
+                                            <a href="#" wire:click.prevent="startConversation({{ $user->id }})" class="text-secondary"><i class="fa fa-comments"></i></a>
                                         </td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->created_at?->toFormattedDate() ?? 'N/A' }}</td>

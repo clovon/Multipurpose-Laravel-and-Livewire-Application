@@ -10,6 +10,9 @@ class Appointment extends Model
 {
     use HasFactory;
 
+    const STATUS_SCHEDULED = 'scheduled';
+    const STATUS_CLOSED = 'closed';
+
     protected $guarded = [];
 
     protected $casts = [
@@ -26,8 +29,8 @@ class Appointment extends Model
     public function getStatusBadgeAttribute()
     {
     	$badges = [
-    		'SCHEDULED' => 'primary',
-    		'CLOSED' => 'success',
+    		$this::STATUS_SCHEDULED => 'primary',
+    		$this::STATUS_CLOSED => 'success',
     	];
 
     	return $badges[$this->status];

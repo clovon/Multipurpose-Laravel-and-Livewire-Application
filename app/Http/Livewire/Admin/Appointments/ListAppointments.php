@@ -67,7 +67,7 @@ class ListAppointments extends AdminComponent
 
 	public function markAllAsScheduled()
 	{
-		Appointment::whereIn('id', $this->selectedRows)->update(['status' => 'SCHEDULED']);
+		Appointment::whereIn('id', $this->selectedRows)->update(['status' => Appointment::STATUS_SCHEDULED]);
 
 		$this->dispatchBrowserEvent('updated', ['message' => 'Appointments marked as scheduled']);
 
@@ -76,7 +76,7 @@ class ListAppointments extends AdminComponent
 
 	public function markAllAsClosed()
 	{
-		Appointment::whereIn('id', $this->selectedRows)->update(['status' => 'CLOSED']);
+		Appointment::whereIn('id', $this->selectedRows)->update(['status' => Appointment::STATUS_CLOSED]);
 
 		$this->dispatchBrowserEvent('updated', ['message' => 'Appointments marked as closed.']);
 

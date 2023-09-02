@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Appointments;
+namespace App\Livewire\Admin\Appointments;
 
-use App\Exports\AppointmentsExport;
 use App\Models\Appointment;
+use App\Exports\AppointmentsExport;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Http\Livewire\Admin\AdminComponent;
+use App\Livewire\Admin\AdminComponent;
 
 class ListAppointments extends AdminComponent
 {
@@ -25,7 +25,7 @@ class ListAppointments extends AdminComponent
 	{
 		$this->appointmentIdBeingRemoved = $appointmentId;
 
-		$this->dispatchBrowserEvent('show-delete-confirmation');
+		$this->dispatch('show-delete-confirmation');
 	}
 
 	public function deleteAppointment()
@@ -34,7 +34,7 @@ class ListAppointments extends AdminComponent
 
 		$appointment->delete();
 
-		$this->dispatchBrowserEvent('deleted', ['message' => 'Appointment deleted successfully!']);
+		$this->dispatch('deleted', ['message' => 'Appointment deleted successfully!']);
 	}
 
 	public function filterAppointmentsByStatus($status = null)
@@ -69,7 +69,7 @@ class ListAppointments extends AdminComponent
 	{
 		Appointment::whereIn('id', $this->selectedRows)->update(['status' => Appointment::STATUS_SCHEDULED]);
 
-		$this->dispatchBrowserEvent('updated', ['message' => 'Appointments marked as scheduled']);
+		$this->dispatch('updated', ['message' => 'Appointments marked as scheduled']);
 
 		$this->reset(['selectPageRows', 'selectedRows']);
 	}
@@ -78,7 +78,7 @@ class ListAppointments extends AdminComponent
 	{
 		Appointment::whereIn('id', $this->selectedRows)->update(['status' => Appointment::STATUS_CLOSED]);
 
-		$this->dispatchBrowserEvent('updated', ['message' => 'Appointments marked as closed.']);
+		$this->dispatch('updated', ['message' => 'Appointments marked as closed.']);
 
 		$this->reset(['selectPageRows', 'selectedRows']);
 	}
@@ -87,7 +87,7 @@ class ListAppointments extends AdminComponent
 	{
 		Appointment::whereIn('id', $this->selectedRows)->delete();
 
-		$this->dispatchBrowserEvent('deleted', ['message' => 'All selected appointment got deleted.']);
+		$this->dispatch('deleted', ['message' => 'All selected appointment got deleted.']);
 
 		$this->reset(['selectPageRows', 'selectedRows']);
 	}
@@ -103,7 +103,7 @@ class ListAppointments extends AdminComponent
             Appointment::find($item['value'])->update(['order_position' => $item['order']]);
         }
 
-        $this->dispatchBrowserEvent('updated', ['message' => 'Appointments sorted successfully.']);
+        $this->dispatch('updated', ['message' => 'Appointments sorted successfully.']);
     }
 
     public function render()

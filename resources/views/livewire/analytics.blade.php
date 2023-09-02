@@ -61,7 +61,7 @@
 
     chart.render();
 
-    document.addEventListener('livewire:load', () => {
+    document.addEventListener('livewire:init', () => {
         @this.on('refreshChart', (chartData) => {
             chart.updateSeries([{
                 data: chartData.seriesData

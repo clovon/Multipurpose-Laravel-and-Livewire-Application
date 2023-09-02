@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Settings;
+namespace App\Livewire\Admin\Settings;
 
 use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
@@ -31,7 +31,7 @@ class UpdateSetting extends Component
 
         Cache::forget('setting');
 
-        $this->dispatchBrowserEvent('updated', ['message' => 'Settings updated successfully!']);
+        $this->dispatch('updated', ['message' => 'Settings updated successfully!']);
     }
 
     public function render()

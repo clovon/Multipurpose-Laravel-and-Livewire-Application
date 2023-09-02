@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Users;
+namespace App\Livewire\Admin\Users;
 
-use App\Http\Livewire\Admin\AdminComponent;
+use App\Livewire\Admin\AdminComponent;
 use App\Models\Conversation;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
@@ -43,7 +43,7 @@ class ListUsers extends AdminComponent
 
 		$user->update(['role' => $role]);
 
-		$this->dispatchBrowserEvent('updated', ['message' => "Role changed to {$role} successfully."]);
+		$this->dispatch('updated', ['message' => "Role changed to {$role} successfully."]);
 	}
 
 	public function addNew()
@@ -52,7 +52,7 @@ class ListUsers extends AdminComponent
 
 		$this->showEditModal = false;
 
-		$this->dispatchBrowserEvent('show-form');
+		$this->dispatch('show-form');
 	}
 
 	public function createUser()
@@ -73,7 +73,7 @@ class ListUsers extends AdminComponent
 
 		// session()->flash('message', 'User added successfully!');
 
-		$this->dispatchBrowserEvent('hide-form', ['message' => 'User added successfully!']);
+		$this->dispatch('hide-form', ['message' => 'User added successfully!']);
 	}
 
 	public function edit(User $user)
@@ -86,7 +86,7 @@ class ListUsers extends AdminComponent
 
 		$this->state = $user->toArray();
 
-		$this->dispatchBrowserEvent('show-form');
+		$this->dispatch('show-form');
 	}
 
 	public function updateUser()
@@ -108,14 +108,14 @@ class ListUsers extends AdminComponent
 
 		$this->user->update($validatedData);
 
-		$this->dispatchBrowserEvent('hide-form', ['message' => 'User updated successfully!']);
+		$this->dispatch('hide-form', ['message' => 'User updated successfully!']);
 	}
 
 	public function confirmUserRemoval($userId)
 	{
 		$this->userIdBeingRemoved = $userId;
 
-		$this->dispatchBrowserEvent('show-delete-modal');
+		$this->dispatch('show-delete-modal');
 	}
 
 	public function deleteUser()
@@ -124,7 +124,7 @@ class ListUsers extends AdminComponent
 
 		$user->delete();
 
-		$this->dispatchBrowserEvent('hide-delete-modal', ['message' => 'User deleted successfully!']);
+		$this->dispatch('hide-delete-modal', ['message' => 'User deleted successfully!']);
 	}
 
     public function sortBy($columnName)

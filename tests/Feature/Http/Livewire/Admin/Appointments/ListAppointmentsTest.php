@@ -8,7 +8,7 @@ use Livewire\Livewire;
 use App\Models\Appointment;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Http\Livewire\Admin\Appointments\ListAppointments;
+use App\Livewire\Admin\Appointments\ListAppointments;
 
 class ListAppointmentsTest extends TestCase
 {

@@ -8,7 +8,7 @@ use App\Models\Client;
 use Livewire\Livewire;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Http\Livewire\Admin\Appointments\CreateAppointmentForm;
+use App\Livewire\Admin\Appointments\CreateAppointmentForm;
 use App\Models\Appointment;
 
 class CreateAppointmentFormTest extends TestCase

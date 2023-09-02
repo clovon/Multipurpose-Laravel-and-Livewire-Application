@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Messages;
+namespace App\Livewire\Admin\Messages;
 
 use App\Models\Conversation;
 use App\Models\Message;

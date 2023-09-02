@@ -28,31 +28,31 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form wire:submit.prevent="updateSetting">
+                        <form wire:submit="updateSetting">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="siteName">Site Name</label>
-                                    <input wire:model.defer="state.site_name" type="text" class="form-control" id="siteName" placeholder="Enter site name">
+                                    <input wire:model="state.site_name" type="text" class="form-control" id="siteName" placeholder="Enter site name">
                                 </div>
                                 <div class="form-group">
                                     <label for="siteEmail">Site Email</label>
-                                    <input wire:model.defer="state.site_email" type="email" class="form-control" id="siteEmail" placeholder="Enter site email">
+                                    <input wire:model="state.site_email" type="email" class="form-control" id="siteEmail" placeholder="Enter site email">
                                 </div>
                                 <div class="form-group">
                                     <label for="siteTitle">Site Title</label>
-                                    <input wire:model.defer="state.site_title" type="text" class="form-control" id="siteTitle" placeholder="Enter site title">
+                                    <input wire:model="state.site_title" type="text" class="form-control" id="siteTitle" placeholder="Enter site title">
                                 </div>
                                 <div class="form-group">
                                     <label for="footerText">Footer Text</label>
-                                    <input wire:model.defer="state.footer_text" type="text" class="form-control" id="footerText" placeholder="Enter footer text">
+                                    <input wire:model="state.footer_text" type="text" class="form-control" id="footerText" placeholder="Enter footer text">
                                 </div>
                                 <div class="form-group">
                                     <div class="custom-control custom-switch">
-                                        <input wire:model.defer="state.sidebar_collapse" type="checkbox" class="custom-control-input" id="sidebarCollapse">
+                                        <input wire:model="state.sidebar_collapse" type="checkbox" class="custom-control-input" id="sidebarCollapse">
                                         <label class="custom-control-label" for="sidebarCollapse">Sidebar Collapse</label>
                                     </div>
                                     <!-- <label for="sidebar_collapse">Sidebar Collapse</label><br>
-                                    <input wire:model.defer="state.sidebar_collapse" type="checkbox" id="sidebar_collapse"> -->
+                                    <input wire:model="state.sidebar_collapse" type="checkbox" id="sidebar_collapse"> -->
                                 </div>
                             </div>
                             <!-- /.card-body -->

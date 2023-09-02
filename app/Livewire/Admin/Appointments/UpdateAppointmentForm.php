@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Appointments;
+namespace App\Livewire\Admin\Appointments;
 
 use App\Models\Appointment;
 use App\Models\Client;
@@ -37,7 +37,7 @@ class UpdateAppointmentForm extends Component
 
 		$this->appointment->update($this->state);
 
-		$this->dispatchBrowserEvent('alert', ['message' => 'Appointment updated successfully!']);
+		$this->dispatch('alert', ['message' => 'Appointment updated successfully!']);
 	}
 
     public function render()

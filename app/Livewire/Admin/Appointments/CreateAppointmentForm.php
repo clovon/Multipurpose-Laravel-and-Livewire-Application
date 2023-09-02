@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Appointments;
+namespace App\Livewire\Admin\Appointments;
 
 use App\Models\Client;
 use Livewire\Component;
@@ -33,7 +33,7 @@ class CreateAppointmentForm extends Component
 
 		Appointment::create($this->state);
 
-		$this->dispatchBrowserEvent('alert', ['message' => 'Appointment created successfully!']);
+		$this->dispatch('alert', ['message' => 'Appointment created successfully!']);
 
         return redirect()->route('admin.appointments');
 	}

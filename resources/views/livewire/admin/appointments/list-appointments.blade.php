@@ -72,7 +72,7 @@
                                         <th></th>
                                         <th>
                                             <div class="icheck-primary d-inline ml-2">
-                                                <input wire:model="selectPageRows" type="checkbox" value="" name="todo2" id="todoCheck2">
+                                                <input wire:model.live="selectPageRows" type="checkbox" value="" name="todo2" id="todoCheck2">
                                                 <label for="todoCheck2"></label>
                                             </div>
                                         </th>
@@ -90,7 +90,7 @@
                                         <td wire:sortable.handle style="width: 10px; cursor: move;"><i class="fa fa-arrows-alt text-muted"></i></td>
                                         <th style="width: 10px;">
                                             <div class="icheck-primary d-inline">
-                                                <input wire:model="selectedRows" type="checkbox" value="{{ $appointment->id }}" name="todo2" id="{{ $appointment->id }}">
+                                                <input wire:model.live="selectedRows" type="checkbox" value="{{ $appointment->id }}" name="todo2" id="{{ $appointment->id }}">
                                                 <label for="{{ $appointment->id }}"></label>
                                             </div>
                                         </th>

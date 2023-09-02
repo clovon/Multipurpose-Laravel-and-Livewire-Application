@@ -26,7 +26,7 @@
                     <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
                             <div class="text-center" x-data="{ imagePreview: '{{ auth()->user()->avatar_url }}' }">
-                                <input wire:model="image" type="file" class="d-none" x-ref="image" x-on:change="
+                                <input wire:model.live="image" type="file" class="d-none" x-ref="image" x-on:change="
                                         reader = new FileReader();
                                         reader.onload = (event) => {
                                             imagePreview = event.target.result;
@@ -58,11 +58,11 @@
                         <div class="card-body">
                             <div class="tab-content">
                                 <div class="tab-pane" :class="currentTab === 'profile' ? 'active' : ''" id="profile" wire:ignore.self>
-                                    <form wire:submit.prevent="updateProfile" class="form-horizontal">
+                                    <form wire:submit="updateProfile" class="form-horizontal">
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                             <div class="col-sm-10">
-                                                <input wire:model.defer="state.name" type="text" class="form-control @error('name') is-invalid @enderror" id="inputName" placeholder="Name">
+                                                <input wire:model="state.name" type="text" class="form-control @error('name') is-invalid @enderror" id="inputName" placeholder="Name">
                                                 @error('name')
                                                 <div class="invalid-feedback">
                                                     {{ $message}}
@@ -73,7 +73,7 @@
                                         <div class="form-group row">
                                             <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                             <div class="col-sm-10">
-                                                <input wire:model.defer="state.email" type="email" class="form-control @error('email') is-invalid @enderror" id="inputEmail" placeholder="Email">
+                                                <input wire:model="state.email" type="email" class="form-control @error('email') is-invalid @enderror" id="inputEmail" placeholder="Email">
                                                 @error('email')
                                                 <div class="invalid-feedback">
                                                     {{ $message}}
@@ -90,12 +90,12 @@
                                 </div>
 
                                 <div class="tab-pane" :class="currentTab === 'changePassword' ? 'active' : ''" id="changePassword" wire:ignore.self>
-                                    <form wire:submit.prevent="changePassword" class="form-horizontal">
+                                    <form wire:submit="changePassword" class="form-horizontal">
                                         <div class="form-group row">
                                             <label for="currentPassword" class="col-sm-3 col-form-label">Current
                                                 Password</label>
                                             <div class="col-sm-9">
-                                                <input wire:model.defer="state.current_password" type="password" class="form-control @error('current_password') is-invalid @enderror" id="currentPassword" placeholder="Current Password">
+                                                <input wire:model="state.current_password" type="password" class="form-control @error('current_password') is-invalid @enderror" id="currentPassword" placeholder="Current Password">
                                                 @error('current_password')
                                                 <div class="invalid-feedback">
                                                     {{ $message}}
@@ -107,7 +107,7 @@
                                             <label for="newPassword" class="col-sm-3 col-form-label">New
                                                 Password</label>
                                             <div class="col-sm-9">
-                                                <input wire:model.defer="state.password" type="password" class="form-control @error('password') is-invalid @enderror" id="newPassword" placeholder="New Password">
+                                                <input wire:model="state.password" type="password" class="form-control @error('password') is-invalid @enderror" id="newPassword" placeholder="New Password">
                                                 @error('password')
                                                 <div class="invalid-feedback">
                                                     {{ $message}}
@@ -119,7 +119,7 @@
                                             <label for="passwordConfirmation" class="col-sm-3 col-form-label">Confirm
                                                 New Password</label>
                                             <div class="col-sm-9">
-                                                <input wire:model.defer="state.password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="passwordConfirmation" placeholder="Confirm New Password">
+                                                <input wire:model="state.password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="passwordConfirmation" placeholder="Confirm New Password">
                                                 @error('password_confirmation')
                                                 <div class="invalid-feedback">
                                                     {{ $message}}

@@ -23,7 +23,7 @@
                 <div class="col-lg-12">
                     <div class="d-flex justify-content-between mb-2">
                         <button wire:click.prevent="addNew" class="btn btn-primary"><i class="fa fa-plus-circle mr-1"></i> Add New User</button>
-                        <x-search-input wire:model="searchTerm" />
+                        <x-search-input wire:model.live="searchTerm" />
                     </div>
                     <div class="card">
                         <div class="card-body">
@@ -102,7 +102,7 @@
     <!-- Modal -->
     <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore.self>
         <div class="modal-dialog" role="document">
-            <form autocomplete="off" wire:submit.prevent="{{ $showEditModal ? 'updateUser' : 'createUser' }}">
+            <form autocomplete="off" wire:submit="{{ $showEditModal ? 'updateUser' : 'createUser' }}">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
@@ -119,7 +119,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" wire:model.defer="state.name" class="form-control @error('name') is-invalid @enderror" id="name" aria-describedby="nameHelp" placeholder="Enter full name">
+                            <input type="text" wire:model="state.name" class="form-control @error('name') is-invalid @enderror" id="name" aria-describedby="nameHelp" placeholder="Enter full name">
                             @error('name')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -129,7 +129,7 @@
 
                         <div class="form-group">
                             <label for="email">Email address</label>
-                            <input type="text" wire:model.defer="state.email" class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                            <input type="text" wire:model="state.email" class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="emailHelp" placeholder="Enter email">
                             @error('email')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -139,7 +139,7 @@
 
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" wire:model.defer="state.password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="Password">
+                            <input type="password" wire:model="state.password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="Password">
                             @error('password')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -149,14 +149,14 @@
 
                         <div class="form-group">
                             <label for="passwordConfirmation">Confirm Password</label>
-                            <input type="password" wire:model.defer="state.password_confirmation" class="form-control" id="passwordConfirmation" placeholder="Confirm Password">
+                            <input type="password" wire:model="state.password_confirmation" class="form-control" id="passwordConfirmation" placeholder="Confirm Password">
                         </div>
 
                         <div class="form-group">
                             <label for="customFile">Profile Photo</label>
                             <div class="custom-file">
                                 <div x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
-                                    <input wire:model="photo" type="file" class="custom-file-input" id="customFile">
+                                    <input wire:model.live="photo" type="file" class="custom-file-input" id="customFile">
                                     <div x-show.transition="isUploading" class="progress progress-sm mt-2 rounded">
                                         <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" x-bind:style="`width: ${progress}%`">
                                             <span class="sr-only">40% Complete (success)</span>

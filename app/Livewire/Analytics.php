@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Livewire\Component;
 
@@ -24,7 +24,7 @@ class Analytics extends Component
         // $this->recentSubscribers += 10;
         $subscribers = array_replace($this->subscribers, [10 => $this->recentSubscribers += 10]);
 
-        $this->emit('refreshChart', ['seriesData' => $subscribers]);
+        $this->dispatch('refreshChart', ['seriesData' => $subscribers]);
     }
 
     public function render()

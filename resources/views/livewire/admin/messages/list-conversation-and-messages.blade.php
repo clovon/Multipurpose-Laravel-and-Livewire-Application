@@ -71,9 +71,9 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <form wire:submit.prevent="sendMessage" action="#">
+                    <form wire:submit="sendMessage" action="#">
                         <div class="input-group">
-                            <input wire:model.defer="body" type="text" name="message" placeholder="Type Message ..." class="form-control">
+                            <input wire:model="body" type="text" name="message" placeholder="Type Message ..." class="form-control">
                             <span class="input-group-append">
                                 <button type="submit" class="btn btn-primary">Send</button>
                             </span>

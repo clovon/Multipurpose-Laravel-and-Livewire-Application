@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Profile;
+namespace App\Livewire\Admin\Profile;
 
 use Livewire\Component;
 use Illuminate\Support\Arr;
@@ -32,7 +32,7 @@ class UpdateProfile extends Component
 
         Storage::disk('avatars')->delete($previousPath);
 
-        $this->dispatchBrowserEvent('updated', ['message' => 'Profile changed successfully!']);
+        $this->dispatch('updated', ['message' => 'Profile changed successfully!']);
     }
 
     public function updateProfile(UpdatesUserProfileInformation $updater)
@@ -42,9 +42,9 @@ class UpdateProfile extends Component
             'email' => $this->state['email']
         ]);
 
-        $this->emit('nameChanged', auth()->user()->name);
+        $this->dispatch('nameChanged', auth()->user()->name);
 
-        $this->dispatchBrowserEvent('updated', ['message' => 'Profile updated successfully!']);
+        $this->dispatch('updated', ['message' => 'Profile updated successfully!']);
     }
 
     public function changePassword(UpdatesUserPasswords $updater)
@@ -56,7 +56,7 @@ class UpdateProfile extends Component
 
         collect($attributes)->map(fn ($value, $key) => $this->state[$key] = '');
 
-        $this->dispatchBrowserEvent('updated', ['message' => 'Password changed successfully!']);
+        $this->dispatch('updated', ['message' => 'Password changed successfully!']);
     }
 
     public function render()

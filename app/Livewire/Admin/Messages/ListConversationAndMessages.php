@@ -29,7 +29,7 @@ class ListConversationAndMessages extends Component
         Message::create([
             'conversation_id' => $this->selectedConversation->id,
             'user_id' => auth()->id(),
-            'body' => $this->body
+            'body' => $this->body,
         ]);
 
         $this->reset('body');
@@ -50,7 +50,7 @@ class ListConversationAndMessages extends Component
             ->get();
 
         return view('livewire.admin.messages.list-conversation-and-messages', [
-            'conversations' => $conversations
+            'conversations' => $conversations,
         ]);
     }
 }

@@ -1,15 +1,15 @@
 <?php
 
-use App\Livewire\Analytics;
-use Illuminate\Support\Facades\Route;
-use App\Livewire\Admin\Users\ListUsers;
-use App\Livewire\Admin\Profile\UpdateProfile;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Livewire\Admin\Appointments\ListAppointments;
 use App\Livewire\Admin\Appointments\CreateAppointmentForm;
+use App\Livewire\Admin\Appointments\ListAppointments;
 use App\Livewire\Admin\Appointments\UpdateAppointmentForm;
 use App\Livewire\Admin\Messages\ListConversationAndMessages;
+use App\Livewire\Admin\Profile\UpdateProfile;
 use App\Livewire\Admin\Settings\UpdateSetting;
+use App\Livewire\Admin\Users\ListUsers;
+use App\Livewire\Analytics;
+use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', DashboardController::class)->name('dashboard');
 

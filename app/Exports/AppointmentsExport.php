@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class AppointmentsExport implements FromQuery, WithMapping, WithHeadings
+class AppointmentsExport implements FromQuery, WithHeadings, WithMapping
 {
     use Exportable;
 

@@ -2,95 +2,94 @@
 
 namespace App\Livewire\Admin\Appointments;
 
-use App\Models\Appointment;
 use App\Exports\AppointmentsExport;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Livewire\Admin\AdminComponent;
+use App\Models\Appointment;
 
 class ListAppointments extends AdminComponent
 {
-	protected $listeners = ['deleteConfirmed' => 'deleteAppointment'];
+    protected $listeners = ['deleteConfirmed' => 'deleteAppointment'];
 
-	public $appointmentIdBeingRemoved = null;
+    public $appointmentIdBeingRemoved = null;
 
-	public $status = null;
+    public $status = null;
 
-	protected $queryString = ['status'];
+    protected $queryString = ['status'];
 
-	public $selectedRows = [];
+    public $selectedRows = [];
 
-	public $selectPageRows = false;
+    public $selectPageRows = false;
 
-	public function confirmAppointmentRemoval($appointmentId)
-	{
-		$this->appointmentIdBeingRemoved = $appointmentId;
+    public function confirmAppointmentRemoval($appointmentId)
+    {
+        $this->appointmentIdBeingRemoved = $appointmentId;
 
-		$this->dispatch('show-delete-confirmation');
-	}
+        $this->dispatch('show-delete-confirmation');
+    }
 
-	public function deleteAppointment()
-	{
-		$appointment = Appointment::findOrFail($this->appointmentIdBeingRemoved);
+    public function deleteAppointment()
+    {
+        $appointment = Appointment::findOrFail($this->appointmentIdBeingRemoved);
 
-		$appointment->delete();
+        $appointment->delete();
 
-		$this->dispatch('deleted', ['message' => 'Appointment deleted successfully!']);
-	}
+        $this->dispatch('deleted', ['message' => 'Appointment deleted successfully!']);
+    }
 
-	public function filterAppointmentsByStatus($status = null)
-	{
-		$this->resetPage();
+    public function filterAppointmentsByStatus($status = null)
+    {
+        $this->resetPage();
 
-		$this->status = $status;
-	}
+        $this->status = $status;
+    }
 
-	public function updatedSelectPageRows($value)
-	{
-		if ($value) {
-			$this->selectedRows = $this->appointments->pluck('id')->map(function ($id) {
-				return (string) $id;
-			});
-		} else {
-			$this->reset(['selectedRows', 'selectPageRows']);
-		}
-	}
+    public function updatedSelectPageRows($value)
+    {
+        if ($value) {
+            $this->selectedRows = $this->appointments->pluck('id')->map(function ($id) {
+                return (string) $id;
+            });
+        } else {
+            $this->reset(['selectedRows', 'selectPageRows']);
+        }
+    }
 
-	public function getAppointmentsProperty()
-	{
-		return Appointment::with('client')
-    		->when($this->status, function ($query, $status) {
-    			return $query->where('status', $status);
-    		})
-    		->orderBy('order_position', 'asc')
-    		->paginate(10);
-	}
+    public function getAppointmentsProperty()
+    {
+        return Appointment::with('client')
+            ->when($this->status, function ($query, $status) {
+                return $query->where('status', $status);
+            })
+            ->orderBy('order_position', 'asc')
+            ->paginate(10);
+    }
 
-	public function markAllAsScheduled()
-	{
-		Appointment::whereIn('id', $this->selectedRows)->update(['status' => Appointment::STATUS_SCHEDULED]);
+    public function markAllAsScheduled()
+    {
+        Appointment::whereIn('id', $this->selectedRows)->update(['status' => Appointment::STATUS_SCHEDULED]);
 
-		$this->dispatch('updated', ['message' => 'Appointments marked as scheduled']);
+        $this->dispatch('updated', ['message' => 'Appointments marked as scheduled']);
 
-		$this->reset(['selectPageRows', 'selectedRows']);
-	}
+        $this->reset(['selectPageRows', 'selectedRows']);
+    }
 
-	public function markAllAsClosed()
-	{
-		Appointment::whereIn('id', $this->selectedRows)->update(['status' => Appointment::STATUS_CLOSED]);
+    public function markAllAsClosed()
+    {
+        Appointment::whereIn('id', $this->selectedRows)->update(['status' => Appointment::STATUS_CLOSED]);
 
-		$this->dispatch('updated', ['message' => 'Appointments marked as closed.']);
+        $this->dispatch('updated', ['message' => 'Appointments marked as closed.']);
 
-		$this->reset(['selectPageRows', 'selectedRows']);
-	}
+        $this->reset(['selectPageRows', 'selectedRows']);
+    }
 
-	public function deleteSelectedRows()
-	{
-		Appointment::whereIn('id', $this->selectedRows)->delete();
+    public function deleteSelectedRows()
+    {
+        Appointment::whereIn('id', $this->selectedRows)->delete();
 
-		$this->dispatch('deleted', ['message' => 'All selected appointment got deleted.']);
+        $this->dispatch('deleted', ['message' => 'All selected appointment got deleted.']);
 
-		$this->reset(['selectPageRows', 'selectedRows']);
-	}
+        $this->reset(['selectPageRows', 'selectedRows']);
+    }
 
     public function export()
     {
@@ -108,17 +107,17 @@ class ListAppointments extends AdminComponent
 
     public function render()
     {
-    	$appointments = $this->appointments;
+        $appointments = $this->appointments;
 
-    	$appointmentsCount = Appointment::count();
-    	$scheduledAppointmentsCount = Appointment::where('status', 'scheduled')->count();
-    	$closedAppointmentsCount = Appointment::where('status', 'closed')->count();
+        $appointmentsCount = Appointment::count();
+        $scheduledAppointmentsCount = Appointment::where('status', 'scheduled')->count();
+        $closedAppointmentsCount = Appointment::where('status', 'closed')->count();
 
         return view('livewire.admin.appointments.list-appointments', [
-        	'appointments' => $appointments,
-        	'appointmentsCount' => $appointmentsCount,
-        	'scheduledAppointmentsCount' => $scheduledAppointmentsCount,
-        	'closedAppointmentsCount' => $closedAppointmentsCount,
+            'appointments' => $appointments,
+            'appointmentsCount' => $appointmentsCount,
+            'scheduledAppointmentsCount' => $scheduledAppointmentsCount,
+            'closedAppointmentsCount' => $closedAppointmentsCount,
         ]);
     }
 }

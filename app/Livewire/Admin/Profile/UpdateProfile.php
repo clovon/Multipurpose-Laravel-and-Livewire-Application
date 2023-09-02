@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Admin\Profile;
 
-use Livewire\Component;
 use Illuminate\Support\Arr;
-use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class UpdateProfile extends Component
 {
@@ -39,7 +39,7 @@ class UpdateProfile extends Component
     {
         $updater->update(auth()->user(), [
             'name' => $this->state['name'],
-            'email' => $this->state['email']
+            'email' => $this->state['email'],
         ]);
 
         $this->dispatch('nameChanged', auth()->user()->name);

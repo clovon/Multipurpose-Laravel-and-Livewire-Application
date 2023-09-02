@@ -2,14 +2,13 @@
 
 namespace Tests\Feature\Http\Livewire\Admin\Appointments;
 
-use Tests\TestCase;
-use App\Models\User;
-use App\Models\Client;
-use Livewire\Livewire;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Livewire\Admin\Appointments\CreateAppointmentForm;
 use App\Models\Appointment;
+use App\Models\Client;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Livewire;
+use Tests\TestCase;
 
 class CreateAppointmentFormTest extends TestCase
 {
@@ -41,9 +40,9 @@ class CreateAppointmentFormTest extends TestCase
                 'client_id' => 'required',
                 'members' => 'required',
                 'color' => 'required',
-				'date' => 'required',
-				'time' => 'required',
-				'status' => 'required',
+                'date' => 'required',
+                'time' => 'required',
+                'status' => 'required',
             ]);
     }
 

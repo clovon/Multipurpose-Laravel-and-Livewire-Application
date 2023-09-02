@@ -7,7 +7,7 @@ use Livewire\WithPagination;
 
 class AdminComponent extends Component
 {
-	use WithPagination;
+    use WithPagination;
 
-	protected $paginationTheme = 'bootstrap';
+    protected $paginationTheme = 'bootstrap';
 }

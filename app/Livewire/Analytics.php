@@ -15,7 +15,7 @@ class Analytics extends Component
     public function mount()
     {
         $this->days = collect(range(13, 24))->map(function ($number) {
-            return 'Jun ' . $number;
+            return 'Jun '.$number;
         });
     }
 

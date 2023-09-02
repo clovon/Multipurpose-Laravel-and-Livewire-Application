@@ -2,13 +2,12 @@
 
 namespace Tests\Feature\Http\Livewire\Admin\Appointments;
 
-use Tests\TestCase;
-use App\Models\User;
-use Livewire\Livewire;
-use App\Models\Appointment;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Livewire\Admin\Appointments\ListAppointments;
+use App\Models\Appointment;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Livewire;
+use Tests\TestCase;
 
 class ListAppointmentsTest extends TestCase
 {

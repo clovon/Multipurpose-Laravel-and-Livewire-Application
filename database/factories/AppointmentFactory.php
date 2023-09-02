@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Client;
 use App\Models\Appointment;
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AppointmentFactory extends Factory
